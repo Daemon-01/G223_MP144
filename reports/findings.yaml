@@ -1,0 +1,62 @@
+# MP144 findings --- fill in every value, keep every key.
+# The marking tool reads this file. Write null only where the comment says so.
+# Use the exact column names and group values from your data files.
+
+group_id: "G223"          # your group id, e.g. "G042"
+problem_id: "MP144"
+
+data_issues:
+  # For each of the 7 kinds: present: true or false.
+  # If present is false, leave the other values as null.
+  leaking_column:
+    present: true
+    column: litres_from_tank_dip_next_day           # the column that must not be used as a feature
+  unit_mixup:
+    present: false
+    column: null           # the column recorded in a different unit
+    group_value: null      # the value of zone whose rows are affected
+    factor: null           # wrong value = right value x factor
+  sentinel_value:
+    present: false
+    column: null
+    value: null            # the special number typed instead of a blank
+    count: null            # how many rows have it
+  duplicate_rows:
+    present: false
+    count: null            # number of EXTRA copies (rows you would delete)
+  stuck_sensor:
+    present: false
+    column: null
+    start_date: null       # first date with the stuck value, YYYY-MM-DD
+    end_date: null         # last date with the stuck value, YYYY-MM-DD
+  target_typos:
+    present: true
+    count: 11          # rows whose target was typed 10 times too big
+  spelling_variants:
+    present: true
+    column: ownership
+    true_levels: 3      # how many real categories there are after cleaning
+
+tracking:
+  experiment_name: "mp144_fuel_sales"
+  best_run_id: "f981f7d717354dc48443536c845f8fc2"        # the MLflow run id of your v1 model
+  registered_model_name: "mp144_model"
+  champion_version: 1
+
+monitoring:
+  psi:                     # cleaned train.csv vs later.csv, 10 bins
+    highway_distance_km: null
+    nearby_pumps: null
+    price_rs: null
+    trucks_passing: null
+    temp_c: null
+    staff: null
+  most_drifted_feature: null
+  mae_by_group:            # v1 on later.csv, per value of zone
+    'Highway': null
+    'City': null
+    'Industrial': null
+  worst_served_group: null
+  mae_v1_on_check: null    # v1 on the last 30% of later.csv (by date)
+  mae_v2_on_check: null    # v2 on the same rows
+  decision: null           # promote or keep

@@ -1,0 +1,42 @@
+data:
+  train_path: "data/raw/train.csv"
+  later_path: "data/raw/later.csv"
+  holdout_path: "data/raw/holdout_features.csv"
+  target_col: "litres_per_day"
+  leaking_cols:
+    - "litres_from_tank_dip_next_day"
+    - "liters_from_tank_dip_next_day"
+  id_cols:
+    - "record_id"
+    - "date"
+  features:
+    - "highway_distance_km"
+    - "nearby_pumps"
+    - "price_rs"
+    - "trucks_passing"
+    - "temp_c"
+    - "staff"
+    - "ownership"
+    - "zone"
+  categorical_features:
+    - "ownership"
+    - "zone"
+  numeric_features:
+    - "highway_distance_km"
+    - "nearby_pumps"
+    - "price_rs"
+    - "trucks_passing"
+    - "temp_c"
+    - "staff"
+  target_typo_threshold: 50000
+
+model:
+  name: "mp144_model"
+  model_dir: "models"
+  model_path: "models/model.joblib"
+  test_size: 0.2
+  random_state: 42
+
+mlflow:
+  tracking_uri: "sqlite:///mlflow.db"
+  experiment_name: "mp144_fuel_sales"

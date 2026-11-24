@@ -8,9 +8,7 @@
 
 ### Group Members
 - S24CSEU1354 - Akansha Bhutani
-- S24CSEU1369 - Aditi Rawat
 - S24CSEU1345 - Parth Rawat
-- S24CSEU1350 - Shriyansh Kumar
 - S24CSEU1766 - Atul Chauhan
 
 ---
